@@ -12,7 +12,7 @@ response = requests.get(
 )
 
 if("text/html" in response.headers['Content-Type']):
-    raise Exception("Error: You need to update the COOKIE")
+    raise Exception("Error: You need to refresh the COOKIE")
 
 current_sections = response.json()["currentSections"]
 
