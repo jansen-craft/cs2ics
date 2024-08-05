@@ -8,8 +8,10 @@ Import your CollegeScheduler selected classes into your calendar!
 2. Click on the term and campus you want to use
 3. Inspect the page and load the Network tab
 4. Click on this request
-5. Copy your Cookie
-6. Place into the COOKIE variable in cs2ics.py
+   ![image](https://github.com/user-attachments/assets/558113c8-9606-4539-8ac0-b8085c5b935c)
+6. Copy your Cookie
+   ![image](https://github.com/user-attachments/assets/ef26cf1d-2f3d-4c18-ab2a-05d6bc3de738)
+8. Place into the COOKIE variable in cs2ics.py
 
 # Running the script
 ```bash
