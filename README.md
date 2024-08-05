@@ -2,7 +2,7 @@
 
 Export CollegeScheduler schedules to your calendar
 
-Using the built in api, this script grabs your class information and produces a [.ics](https://en.wikipedia.org/wiki/ICalendar) file
+Using the built in [api](https://ohio.collegescheduler.com/api), this script grabs your class information and produces a [.ics](https://en.wikipedia.org/wiki/ICalendar) file
 
 # Setup
 
