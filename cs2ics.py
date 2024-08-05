@@ -1,7 +1,15 @@
+from icalendar import Calendar, Event
 import requests
+from datetime import datetime, timedelta
 
+DAY_MAP = {"M": "MO", "T": "TU", "W": "WE", "R": "TH", "F": "FR"}
 TERM = "Fall%20Semester%202024-25"
 COOKIE = ""
+
+def combine_date_time(raw_date: str, raw_time: int):
+    date = datetime.strptime(str(raw_date), "%Y-%m-%dT%H:%M:%S%z")
+    time = datetime.strptime(str(raw_time), "%H%M").time()
+    return datetime.combine(date, time)
 
 response = requests.get(
     f'https://ohio.collegescheduler.com/api/term-data/{TERM}',
@@ -13,21 +21,32 @@ if("text/html" in response.headers['Content-Type']):
 
 current_sections = response.json()["currentSections"]
 
+calendar = Calendar()
+
 for section in current_sections:
     title = section["title"]
     course = f'{section["subject"]}  {section["course"]}'
     instructor = section["instructor"][0]["name"] if section["instructor"] else "N/A"
-    meetings = section["meetings"]
-    days = meetings[0]["days"]
-    startTime = meetings[0]["startTime"]
-    endTime = meetings[0]["endTime"]
-    startDate = meetings[0]["startDate"]
-    endDate = meetings[0]["endDate"]
-    room = meetings[0]["building"]
-    
-    print(title, course, instructor)
-    print(f"\t{days}")
-    print(f"\t{startTime} - {endTime}")
-    print(f"\t{startDate} - {endDate}")
-    print(f"\t{room}")
-    
+    meeting = section["meetings"][0]
+    days = meeting["daysRaw"]
+    startTime = datetime.strptime(str(meeting["startTime"]), "%H%M").time()
+    endTime = datetime.strptime(str(meeting["endTime"]), "%H%M").time()
+    startDate = datetime.strptime(str(meeting["startDate"]), "%Y-%m-%dT%H:%M:%S%z")
+    endDate = datetime.strptime(str(meeting["endDate"]), "%Y-%m-%dT%H:%M:%S%z")
+    room = meeting["building"]
+
+    start = datetime.combine(startDate, startTime)
+    end = datetime.combine(startDate, endTime)
+    bydays = [DAY_MAP[day] for day in DAY_MAP if day in days]
+
+    event = Event()
+    event.add('summary', f"{course} {title}")
+    event.add('dtstart', start)
+    event.add('dtend', end)
+    event.add('location', room)
+    event.add('description', f"Instructor: {instructor}")
+    event.add('RRULE', {'FREQ':["WEEKLY"], 'UNTIL':endDate + timedelta(days=1), 'BYDAY':bydays})
+    calendar.add_component(event)
+
+with open('classes.ics', 'wb') as f:
+    f.write(calendar.to_ical())
