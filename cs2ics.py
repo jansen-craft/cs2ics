@@ -6,11 +6,6 @@ DAY_MAP = {"M": "MO", "T": "TU", "W": "WE", "R": "TH", "F": "FR"}
 TERM = "Fall%20Semester%202024-25"
 COOKIE = ""
 
-def combine_date_time(raw_date: str, raw_time: int):
-    date = datetime.strptime(str(raw_date), "%Y-%m-%dT%H:%M:%S%z")
-    time = datetime.strptime(str(raw_time), "%H%M").time()
-    return datetime.combine(date, time)
-
 response = requests.get(
     f'https://ohio.collegescheduler.com/api/term-data/{TERM}',
     headers={'Cookie': COOKIE}
