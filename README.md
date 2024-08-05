@@ -1,6 +1,8 @@
 # CollegeScheduler to ICS
 
-Import your CollegeScheduler selected classes into your calendar!
+Export CollegeScheduler schedules to your calendar
+
+Using the built in api, this script grabs your class information and produces a [.ics](https://en.wikipedia.org/wiki/ICalendar) file
 
 # Setup
 
