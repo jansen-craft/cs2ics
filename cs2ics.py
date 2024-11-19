@@ -3,7 +3,7 @@ import requests
 from datetime import datetime, timedelta
 
 DAY_MAP = {"M": "MO", "T": "TU", "W": "WE", "R": "TH", "F": "FR"}
-TERM = "Fall%20Semester%202024-25"
+TERM = "Spring%20Semester%202024-25"
 COOKIE = ""
 
 response = requests.get(
