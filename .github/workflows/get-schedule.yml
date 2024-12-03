@@ -31,7 +31,7 @@ jobs:
 
     - name: Run the Python script to generate the ICS file
       run: |
-        python cs2ics.py --semester ${{ github.event.inputs.semester }} --cookie ${{ github.event.inputs.cookie }}
+        python cs2ics.py --semester "${{ github.event.inputs.semester }}" --cookie "${{ github.event.inputs.cookie }}"
 
     - name: Upload the ICS file as an artifact
       uses: actions/upload-artifact@v3
