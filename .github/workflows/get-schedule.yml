@@ -34,7 +34,7 @@ jobs:
         python cs2ics.py --semester "${{ github.event.inputs.semester }}" --cookie "${{ github.event.inputs.cookie }}"
 
     - name: Upload the ICS file as an artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: calendar
         path: classes.ics
