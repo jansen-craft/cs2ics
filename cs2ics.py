@@ -1,10 +1,18 @@
 from icalendar import Calendar, Event
 import requests
+import argparse
 from datetime import datetime, timedelta
 
 DAY_MAP = {"M": "MO", "T": "TU", "W": "WE", "R": "TH", "F": "FR"}
-TERM = "Spring%20Semester%202024-25"
-COOKIE = ""
+
+# Grab arguments
+parser = argparse.ArgumentParser(description="Generate ICS calendar file for the semester.")
+parser.add_argument('--semester', required=True, help="The semester to generate the calendar for")
+parser.add_argument('--cookie', required=True, help="Authentication cookie for the request")
+args = parser.parse_args()
+
+TERM = args.semester
+COOKIE = args.cookie
 
 response = requests.get(
     f'https://ohio.collegescheduler.com/api/term-data/{TERM}',
