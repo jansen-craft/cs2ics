@@ -21,7 +21,15 @@ Using the built in [api](https://ohio.collegescheduler.com/api), this script gra
     python cs2ics.py
 ```
 You can now import the .ics file into most modern Calendar services (Outlook, Google Calendar etc...)
-   
+
+# Quick Method (Really awfully terribly insecure)
+
+Instead of running the script on your own, you can opt to enter your cookie into [get-schedule](https://github.com/jansen-craft/cs2ics/actions)
+
+Your COOKIE is only valid for a few seconds, but this is still really awful. Anyone can see your cookie as the Action runs and can download your schedule after. If you decide to do this, please make sure to delete your run after you are finished.
+
+Once again, I recommend you run this locally if you care even the slighest about the privacy of your information.
+
 # Using the .ics file (Outlook Web)
 1. Go to `Calendar` tab
 2. Click `Add Calendar`
