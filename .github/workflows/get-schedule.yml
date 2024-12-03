@@ -1,0 +1,40 @@
+name: Generate ICS Calendar File
+
+on:
+  workflow_dispatch:
+    inputs:
+      semester:
+        description: 'The semester for which to generate the calendar'
+        required: true
+        default: 'fall2024'
+      cookie:
+        description: 'A cookie for authentication (if required)'
+        required: true
+
+jobs:
+  generate_ics:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.8'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run the Python script to generate the ICS file
+      run: |
+        python generate_ics.py --semester ${{ github.event.inputs.semester }} --cookie ${{ github.event.inputs.cookie }}
+
+    - name: Upload the ICS file as an artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: calendar
+        path: output/calendar.ics
