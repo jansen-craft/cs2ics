@@ -6,9 +6,9 @@ on:
       semester:
         description: 'The semester for which to generate the calendar'
         required: true
-        default: 'fall2024'
+        default: 'Spring%20Semester%202024-25'
       cookie:
-        description: 'A cookie for authentication (if required)'
+        description: 'Cookie for authentication'
         required: true
 
 jobs:
