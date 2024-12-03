@@ -14,12 +14,14 @@ Using the built in [api](https://ohio.collegescheduler.com/api), this script gra
    ![image](https://github.com/user-attachments/assets/558113c8-9606-4539-8ac0-b8085c5b935c)
 6. Copy your Cookie
    ![image](https://github.com/user-attachments/assets/ef26cf1d-2f3d-4c18-ab2a-05d6bc3de738)
-8. Place into the COOKIE variable in cs2ics.py
 
 # Running the script
 ```bash
-    python cs2ics.py
+   python cs2ics.py --semester "<SEMESTER>" --cookie "<COOKIE>"
 ```
+
+**semester** is of the form `Spring%20Semester%202024-25`
+
 You can now import the .ics file into most modern Calendar services (Outlook, Google Calendar etc...)
 
 # Quick Method (Really awfully terribly insecure)
